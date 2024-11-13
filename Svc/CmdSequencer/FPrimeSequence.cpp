@@ -91,9 +91,14 @@ namespace Svc {
   }
 
   void CmdSequencerComponentImpl::FPrimeSequence ::
-     nextRecord(Record& record)
+    nextRecord(Record& record)
   {
     Fw::SerializeStatus status = this->deserializeRecord(record);
+    if (status == Fw::SerializeStatus::FW_DESERIALIZE_BUFFER_EMPTY)
+    {
+      this->m_component.log_WARNING_HI_CS_FileEmpty();
+      return;
+    }
     FW_ASSERT(status == Fw::FW_SERIALIZE_OK, status);
   }
 
