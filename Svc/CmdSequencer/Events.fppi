@@ -215,10 +215,9 @@ event CS_JoinWaitingNotComplete() \
   id 24 \
   format "Still waiting for sequence file to complete"
 
-event CS_FileEmpty(
-                      #fileName: string size 60 @< The name of the sequence file
+event CS_NoRecords(
+                      fileName: string size 60 @< The name of the sequence file
                     ) \
-  severity warning high \
+  severity warning low \
   id 25 \
-  format "Sequence file is empty. Ignoring."
-  #format "Sequence file {} is empty. Ignoring."
+  format "Sequence file {} has no records. Ignoring."
